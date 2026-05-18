@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Personal Streaming Engine</title>
+    <title>Personal YouTube Viewer Station</title>
     <style>
         body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background-color: #0f0f14; font-family: system-ui, sans-serif; color: #fff; }
         .app-layout { display: flex; flex-direction: column; width: 100%; height: 100%; }
         .top-navigation { background: #1a1a24; padding: 12px 20px; display: flex; gap: 15px; align-items: center; border-bottom: 2px solid #2d2d3f; }
-        .brand { font-weight: bold; color: #ef4444; font-size: 16px; letter-spacing: 0.5px; }
-        .search-container { flex-grow: 1; display: flex; gap: 8px; max-width: 600px; }
+        .brand { font-weight: bold; color: #ff0000; font-size: 16px; letter-spacing: 0.5px; text-transform: uppercase; }
+        .search-container { flex-grow: 1; display: flex; gap: 8px; max-width: 600px; margin-left: auto; }
         input { flex-grow: 1; background: #252538; border: 1px solid #3f3f56; color: #fff; padding: 10px 16px; border-radius: 20px; font-size: 14px; outline: none; }
-        input:focus { border-color: #ef4444; }
-        button { background: #ef4444; border: none; color: #fff; padding: 10px 24px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 14px; }
+        input:focus { border-color: #ff0000; }
+        button { background: #ff0000; border: none; color: #fff; padding: 10px 24px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 14px; }
         button:hover { background: #dc2626; }
         .preset-btn { background: #252538; border: 1px solid #3f3f56; color: #fff; padding: 10px 18px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 14px; }
-        .preset-btn:hover { background: #3f3f56; border-color: #ef4444; }
+        .preset-btn:hover { background: #3f3f56; border-color: #ff0000; }
         .viewport-area { flex-grow: 1; position: relative; width: 100%; height: 100%; background: #000; }
         iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
     </style>
@@ -24,30 +24,31 @@
 
 <div class="app-layout">
     <div class="top-navigation">
-        <div class="brand">PROX-VISION v1</div>
+        <div class="brand">YT VIEWER DASHBOARD</div>
         
-        <!-- One-click button to load Jynxzi instantly into your embedded window -->
-        <button class="preset-btn" onclick="loadJynxzi()">⚡ Load Jynxzi</button>
+        <!-- Quick button to jump instantly to Jynxzi's content feed -->
+        <button class="preset-btn" onclick="loadJynxzi()">⚡ Search Jynxzi</button>
         
         <div class="search-container">
-            <input type="text" id="viewerSearch" placeholder="Search other channels or videos here...">
+            <input type="text" id="viewerSearch" placeholder="Type video names or channels here...">
             <button onclick="executeViewerSearch()">Search</button>
         </div>
     </div>
     
     <div class="viewport-area">
-        <!-- The unblocked YouTube mirror interface renders directly inside your page now -->
-        <iframe id="mediaFrame" src="https://nadeko.net" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+        <!-- Direct embed of a clean, fully functional YouTube front-end network mirror -->
+        <iframe id="mediaFrame" src="https://piped.video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
     </div>
 </div>
 
 <script>
-    const proxyBase = "https://nadeko.net";
+    // Using an alternative open platform layout that doesn't block iframe rendering
+    const basePlatform = "https://piped.video";
 
     function loadJynxzi() {
         const frame = document.getElementById('mediaFrame');
-        // Automatically opens his custom unblocked channel interface directly inside your page
-        frame.src = proxyBase + "/search?q=jynxzi";
+        // Loads a complete search page loop for Jynxzi straight into your viewer box
+        frame.src = basePlatform + "/results?search_query=jynxzi";
     }
 
     function executeViewerSearch() {
@@ -55,10 +56,10 @@
         if (!query) return;
         
         const frame = document.getElementById('mediaFrame');
-        frame.src = proxyBase + "/search?q=" + encodeURIComponent(query);
+        frame.src = basePlatform + "/results?search_query=" + encodeURIComponent(query);
     }
 
-    // Default to searching Jynxzi as soon as your GitHub site opens
+    // Auto-search for Jynxzi right when your personal page link loads
     window.onload = loadJynxzi;
 </script>
 
